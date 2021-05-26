@@ -1,0 +1,18 @@
+projects:
+  LegalShieldConsulting:
+    schemaPath: src/graphql/schema.json
+    includes:
+      - src/graphql/**/*.ts
+    excludes:
+      - ./amplify/**
+    extensions:
+      amplify:
+        codeGenTarget: typescript
+        generatedFileName: src/API.ts
+        docsFilePath: src/graphql
+        region: eu-central-1
+        apiId: 36l4y7r3unbvro5d7eterizteq
+        maxDepth: 2
+extensions:
+  amplify:
+    version: 3

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectRootManager">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+  <component name="SbtLocalSettings">
+    <option name="externalProjectsViewState">
+      <projects_view />
+    </option>
+    <option name="projectSyncType">
+      <map>
+        <entry key="D:/Uni/YEAR II/THESIS/Lucia Tajoli/application/ServicesNetworkAnalysis" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../../../Tetracom/projects/graze" value="PREVIEW" />
+      </map>
+    </option>
+  </component>
+  <component name="ScalaSbtSettings">
+    <option name="maximumHeapSize" value="2048" />
+    <option name="vmParameters" value="-XX:MaxPermSize=1024M" />
+  </component>
+</project>

@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-legalshieldconsultin-dev-131930-authRole",
+      "UnauthRoleArn": "arn:aws:iam::784268206212:role/amplify-legalshieldconsultin-dev-131930-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::784268206212:role/amplify-legalshieldconsultin-dev-131930-authRole",
+      "Region": "eu-central-1",
+      "DeploymentBucketName": "amplify-legalshieldconsultin-dev-131930-deployment",
+      "UnauthRoleName": "amplify-legalshieldconsultin-dev-131930-unauthRole",
+      "StackName": "amplify-legalshieldconsultin-dev-131930",
+      "StackId": "arn:aws:cloudformation:eu-central-1:784268206212:stack/amplify-legalshieldconsultin-dev-131930/9258c3d0-a02f-11eb-8662-06fcfa67fa6e",
+      "AmplifyAppId": "d3qycp87y4qp2m"
+    },
+    "categories": {
+      "auth": {
+        "legalshieldconsultin738a90ad": {}
+      }
+    }
+  }
+}

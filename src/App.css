@@ -36,3 +36,18 @@
     transform: rotate(360deg);
   }
 }
+
+ul.linkMenu li {
+  position: relative;
+  display: inline;
+  float: left;
+  margin-left: 20px;
+}
+
+div.tempContainer {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: left;
+  margin-bottom: 10px;
+}
