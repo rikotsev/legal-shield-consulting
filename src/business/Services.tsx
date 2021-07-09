@@ -1,13 +1,13 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import {Beans} from "../beans/Beans";
+import { Beans } from "../beans/Beans";
 import ServiceRow from "./ServiceRow";
 import NewService from "./NewService";
-import {Route, Switch} from "react-router";
+import { Route, Switch } from "react-router";
 import ServiceDetails from "./ServiceDetails";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import * as custom_queries from "../dao/CustomQueries";
-import {API} from "aws-amplify";
+import { API } from "aws-amplify";
 
 
 type ServicesProps = {
@@ -48,8 +48,8 @@ class Services extends React.Component<ServicesProps, ServicesState> {
      * We need to have this as any because there is no
      * support for the GraphQLResults object as a generic type to contain the data parameter
      */
-    getAllServices = async ():Promise<any> => {
-        const response = await (API.graphql({query: custom_queries.listServicesWithOptions}) as any);
+    getAllServices = async (): Promise<any> => {
+        const response = await (API.graphql({ query: custom_queries.listServicesWithOptions }) as any);
 
         console.log(response);
 
@@ -57,7 +57,6 @@ class Services extends React.Component<ServicesProps, ServicesState> {
     }
     async componentDidMount() {
         let services = await this.getAllServices();
-
         this.setState(() => ({
             services: services
         }));
@@ -73,21 +72,26 @@ class Services extends React.Component<ServicesProps, ServicesState> {
         return (
             <div>
                 <h1>Services</h1>
-                <div style={sidemenuDivStyles}>
-                    <ul>
-                        {this.state.services.map((service) => {
+                {(() => {
+                    if (this.props.user.username != "") {
+                        return (
+                            <div style={sidemenuDivStyles}>
+                                <ul>
+                                    {this.state.services.map((service) => {
 
-                            return (
-                                <ServiceRow service={service} />
-                            );
-                        })}
-                        <li>
-                            <Link to={"/services/new"}>
-                                Create new service
-                            </Link>
-                        </li>
-                    </ul>
-                </div>
+                                        return (
+                                            <ServiceRow service={service} />
+                                        );
+                                    })}
+                                    <li>
+                                        <Link to={"/services/new"}>
+                                            Create new service
+                                        </Link>
+                                    </li>
+                                </ul>
+                            </div>)
+                    }
+                })()}
                 <div style={mainDivStyles}>
                     <Switch>
                         {
