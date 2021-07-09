@@ -1,5 +1,4 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
 import { Beans } from "../beans/Beans";
 import ServiceRow from "./ServiceRow";
 import NewService from "./NewService";
@@ -73,7 +72,7 @@ class Services extends React.Component<ServicesProps, ServicesState> {
             <div>
                 <h1>Services</h1>
                 {(() => {
-                    if (this.props.user.username != "") {
+                    if (this.props.user.username !== "") {
                         return (
                             <div style={sidemenuDivStyles}>
                                 <ul>

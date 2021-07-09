@@ -1,7 +1,6 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
-import {Beans} from "../beans/Beans";
-import {Link} from "react-router-dom";
+import { Beans } from "../beans/Beans";
+import { Link } from "react-router-dom";
 
 type ServiceRowProps = {
     service: Beans.ServiceBean

@@ -1,8 +1,8 @@
 import * as React from "react";
-import {Beans} from "../beans/Beans";
-import {v4 as uuid} from 'uuid';
-import {ChangeEvent} from "react";
-import {API, Auth} from "aws-amplify";
+import { Beans } from "../beans/Beans";
+import { v4 as uuid } from 'uuid';
+import { ChangeEvent } from "react";
+import { API } from "aws-amplify";
 import * as custom_queries from "../dao/CustomQueries";
 
 type NewServiceProps = {
@@ -38,7 +38,7 @@ class NewService extends React.Component<NewServiceProps, NewServiceState> {
         // @ts-ignore
         let name = event.target.name;
 
-        switch(name) {
+        switch (name) {
             case 'name':
                 this.setState((state) => {
                     state.service.title = value
@@ -60,14 +60,16 @@ class NewService extends React.Component<NewServiceProps, NewServiceState> {
 
         //let currentSession = await Auth.currentSession();
 
-        let additionalHeaders =  {
+        let additionalHeaders = {
             Authorization: this.props.user.Session
         };
 
-        await API.graphql({query: custom_queries.createNewService, variables: {
+        await API.graphql({
+            query: custom_queries.createNewService, variables: {
                 title: this.state.service.title,
                 description: this.state.service.description
-            }}, additionalHeaders);
+            }
+        }, additionalHeaders);
 
         this.props.syncServices();
 
@@ -77,7 +79,7 @@ class NewService extends React.Component<NewServiceProps, NewServiceState> {
             <div>
                 <div>
                     <label>Name:</label>
-                    <input type="text" name="name" onChange={this.handleChange} value={this.state.service.title}/>
+                    <input type="text" name="name" onChange={this.handleChange} value={this.state.service.title} />
                 </div>
                 <div>
                     <label>Description:</label>

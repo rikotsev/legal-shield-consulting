@@ -1,11 +1,7 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
-import {Beans} from "../beans/Beans";
-import {Route} from "react-router";
+import { Beans } from "../beans/Beans";
 import NewOption from "./NewOption";
 import Option from "./Option";
-import {API} from "aws-amplify";
-import * as custom_queries from "../dao/CustomQueries";
 
 type ServiceDetailsProps = {
     service: Beans.ServiceBean,
@@ -26,7 +22,7 @@ class ServiceDetails extends React.Component<ServiceDetailsProps, ServiceDetails
         service: this.props.service
     }
     setIsEdit = (newIsEdit: boolean): void => {
-        this.setState( (state) => ({
+        this.setState((state) => ({
             isEdit: newIsEdit
         }));
     }
@@ -35,14 +31,14 @@ class ServiceDetails extends React.Component<ServiceDetailsProps, ServiceDetails
             <div>
                 {
                     this.state.isEdit ?
-                    <ServiceDetailsEdit service={this.props.service} setIsEdit={this.setIsEdit} /> :
-                    <ServiceDetailsView service={this.props.service} setIsEdit={this.setIsEdit} syncServices={this.props.syncServices} />
+                        <ServiceDetailsEdit service={this.props.service} setIsEdit={this.setIsEdit} /> :
+                        <ServiceDetailsView service={this.props.service} setIsEdit={this.setIsEdit} syncServices={this.props.syncServices} />
 
                 }
-                <hr/>
+                <hr />
                 {this.props.service.options.map(opt => {
                     return (
-                        <Option syncServices={this.props.syncServices} option={opt} serviceId={this.props.service.id}/>
+                        <Option syncServices={this.props.syncServices} option={opt} serviceId={this.props.service.id} />
                     );
                 })}
                 <div>
