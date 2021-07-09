@@ -61,7 +61,7 @@ class NewService extends React.Component<NewServiceProps, NewServiceState> {
         //let currentSession = await Auth.currentSession();
 
         let additionalHeaders =  {
-            Authorization: currentSession.getIdToken().getJwtToken();
+            Authorization: this.props.user.Session
         };
 
         await API.graphql({query: custom_queries.createNewService, variables: {
