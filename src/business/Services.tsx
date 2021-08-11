@@ -71,26 +71,28 @@ class Services extends React.Component<ServicesProps, ServicesState> {
         return (
             <div>
                 <h1>Services</h1>
-                {(() => {
-                    if (this.props.user.username !== "") {
-                        return (
-                            <div style={sidemenuDivStyles}>
-                                <ul>
-                                    {this.state.services.map((service) => {
+                <div style={sidemenuDivStyles}>
+                    <ul>
+                        {this.state.services.map((service) => {
 
-                                        return (
-                                            <ServiceRow service={service} />
-                                        );
-                                    })}
+                            return (
+                                <ServiceRow service={service} />
+                            );
+                        })}
+                        {(() => {
+                            if (this.props.user.username !== "") {
+                                return (
                                     <li>
                                         <Link to={"/services/new"}>
                                             Create new service
                                         </Link>
                                     </li>
-                                </ul>
-                            </div>)
-                    }
-                })()}
+
+                                )
+                            }
+                        })()}
+                    </ul>
+                </div>)
                 <div style={mainDivStyles}>
                     <Switch>
                         {
