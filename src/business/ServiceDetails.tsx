@@ -2,6 +2,8 @@ import * as React from "react";
 import { Beans } from "../beans/Beans";
 import NewOption from "./NewOption";
 import Option from "./Option";
+import { API } from "aws-amplify";
+import * as custom_queries from "../dao/CustomQueries";
 
 type ServiceDetailsProps = {
     service: Beans.ServiceBean,
@@ -33,7 +35,6 @@ class ServiceDetails extends React.Component<ServiceDetailsProps, ServiceDetails
                     this.state.isEdit ?
                         <ServiceDetailsEdit service={this.props.service} setIsEdit={this.setIsEdit} /> :
                         <ServiceDetailsView service={this.props.service} setIsEdit={this.setIsEdit} syncServices={this.props.syncServices} />
-
                 }
                 <hr />
                 {this.props.service.options.map(opt => {
@@ -64,12 +65,15 @@ class ServiceDetailsView extends React.Component<ServiceDetailsViewProps, Servic
     constructor(props: ServiceDetailsViewProps) {
         super(props);
     }
-    deleteService = () => {
-        /*
-        API.graphql({query: custom_queries.deleteService, variables: {
+    deleteService = async (event: any): Promise<void> => {
+        console.log('Deleteing service');
+
+        API.graphql({
+            query: custom_queries.deleteService, variables: {
                 id: this.props.service.id
-            }});
-        */
+            }
+        });
+
         this.props.syncServices();
     }
     render() {

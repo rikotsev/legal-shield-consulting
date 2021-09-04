@@ -46,3 +46,11 @@ mutation deleteOption($id: ID!, $serviceId: ID!) {
   }
 }
     `;
+
+export const deleteService = /* GraphQL */ `
+mutation deleteService($id: ID!) {
+  deleteService(input: {id: $id}) {
+    id
+  }
+}
+    `;
