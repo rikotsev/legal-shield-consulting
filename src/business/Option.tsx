@@ -1,6 +1,6 @@
 import * as React from "react";
-import {Beans} from "../beans/Beans";
-import {API} from "aws-amplify";
+import { Beans } from "../beans/Beans";
+import { API } from "aws-amplify";
 import * as custom_queries from "../dao/CustomQueries";
 
 type OptionProps = {
@@ -23,17 +23,17 @@ class Option extends React.Component<OptionProps, OptionState> {
         option: this.props.option
     };
     handleStateChange = (newState: boolean): void => {
-        this.setState( (state) => ({
+        this.setState((state) => ({
             isEdit: newState
-        }) );
+        }));
     }
     render() {
         return (
             <div>
                 {
                     this.state.isEdit ?
-                    <OptionEdit option={this.state.option} handleStateChange={this.handleStateChange} /> :
-                    <OptionView option={this.state.option} handleStateChange={this.handleStateChange} syncServices={this.props.syncServices} serviceId={this.props.serviceId}/>
+                        <OptionEdit option={this.state.option} handleStateChange={this.handleStateChange} /> :
+                        <OptionView option={this.state.option} handleStateChange={this.handleStateChange} syncServices={this.props.syncServices} serviceId={this.props.serviceId} />
                 }
             </div>
         );
@@ -57,10 +57,16 @@ class OptionView extends React.Component<OptionViewProps, OptionViewState> {
         super(props);
     }
     deleteOption = (event: any): void => {
-        API.graphql({query: custom_queries.deleteOption, variables: {
+        console.log('Deleteing option');
+        console.log(this.props.option.id);
+        console.log(this.props.serviceId);
+
+        API.graphql({
+            query: custom_queries.deleteOption, variables: {
                 id: this.props.option.id,
                 serviceId: this.props.serviceId
-            }});
+            }
+        });
 
         this.props.syncServices();
     }

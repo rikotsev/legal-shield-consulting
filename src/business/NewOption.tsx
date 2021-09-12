@@ -1,8 +1,8 @@
 import * as React from "react";
-import {Beans} from "../beans/Beans";
-import {v4 as uuid} from 'uuid';
-import {ChangeEvent} from "react";
-import {API} from "aws-amplify";
+import { Beans } from "../beans/Beans";
+import { v4 as uuid } from 'uuid';
+import { ChangeEvent } from "react";
+import { API } from "aws-amplify";
 import * as custom_queries from "../dao/CustomQueries";
 
 type NewOptionProps = {
@@ -33,7 +33,7 @@ class NewOption extends React.Component<NewOptionProps, NewOptionState> {
         // @ts-ignore
         let name = event.target.name;
 
-        switch(name) {
+        switch (name) {
             case 'title':
                 this.setState((state) => {
                     state.option.title = value;
@@ -59,13 +59,18 @@ class NewOption extends React.Component<NewOptionProps, NewOptionState> {
         console.log('Creating a new option!');
         console.log(this.state);
 
-        API.graphql({query: custom_queries.createNewOption, variables: {
+        API.graphql({
+            query: custom_queries.createNewOption, variables: {
                 title: this.state.option.title,
                 id: this.state.option.id,
                 description: this.state.option.description,
                 serviceId: this.state.option.serviceID,
                 price: this.state.option.price
-            }})
+            }
+        })
+
+        this.props.syncServices();
+
     }
     render() {
         return (
