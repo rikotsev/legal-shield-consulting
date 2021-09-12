@@ -4,6 +4,8 @@ import { v4 as uuid } from 'uuid';
 import { ChangeEvent } from "react";
 import { API } from "aws-amplify";
 import * as custom_queries from "../dao/CustomQueries";
+import { Redirect, Route } from "react-router";
+import Services from "./Services";
 
 type NewServiceProps = {
     user: {
@@ -75,6 +77,13 @@ class NewService extends React.Component<NewServiceProps, NewServiceState> {
 
     };
     render() {
+        if (this.props.user.username == "") {
+            return (
+                <Route exact path={"services"}>
+                    <Services user={this.props.user} />
+                </Route>
+            )
+        }
         return (
             <div>
                 <div>
