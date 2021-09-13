@@ -24,7 +24,7 @@ class NewOption extends React.Component<NewOptionProps, NewOptionState> {
             description: "",
             title: "",
             price: 0,
-            serviceID: this.props.service.id,
+            serviceID: ""
         }
     };
     handleChange = (event: ChangeEvent): void => {
@@ -59,15 +59,19 @@ class NewOption extends React.Component<NewOptionProps, NewOptionState> {
         console.log('Creating a new option!');
         console.log(this.state);
 
+        let newOptionInput = {
+            id: uuid(),
+            title: this.state.option.title,
+            description: this.state.option.description,
+            serviceId: this.props.service.id,
+            price: this.state.option.price
+        };
+
+        console.log(newOptionInput);
+
         API.graphql({
-            query: custom_queries.createNewOption, variables: {
-                title: this.state.option.title,
-                id: this.state.option.id,
-                description: this.state.option.description,
-                serviceId: this.state.option.serviceID,
-                price: this.state.option.price
-            }
-        })
+            query: custom_queries.createNewOption, variables: newOptionInput
+        });
 
         this.props.syncServices();
 

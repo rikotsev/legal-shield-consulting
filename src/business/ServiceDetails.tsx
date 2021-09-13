@@ -11,17 +11,16 @@ type ServiceDetailsProps = {
 }
 
 type ServiceDetailsState = {
-    service: Beans.ServiceBean
     isEdit: boolean
 }
 
 class ServiceDetails extends React.Component<ServiceDetailsProps, ServiceDetailsState> {
     constructor(props: ServiceDetailsProps) {
         super(props);
+        console.log(props);
     }
     state = {
-        isEdit: false,
-        service: this.props.service
+        isEdit: false
     }
     setIsEdit = (newIsEdit: boolean): void => {
         this.setState((state) => ({

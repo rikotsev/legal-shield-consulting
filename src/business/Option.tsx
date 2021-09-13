@@ -2,6 +2,7 @@ import * as React from "react";
 import { Beans } from "../beans/Beans";
 import { API } from "aws-amplify";
 import * as custom_queries from "../dao/CustomQueries";
+import * as mutations from "../graphql/mutations";
 
 type OptionProps = {
     option: Beans.OptionBean
@@ -10,8 +11,7 @@ type OptionProps = {
 };
 
 type OptionState = {
-    isEdit: boolean,
-    option: Beans.OptionBean
+    isEdit: boolean
 }
 
 class Option extends React.Component<OptionProps, OptionState> {
@@ -19,8 +19,7 @@ class Option extends React.Component<OptionProps, OptionState> {
         super(props);
     }
     state = {
-        isEdit: false,
-        option: this.props.option
+        isEdit: false
     };
     handleStateChange = (newState: boolean): void => {
         this.setState((state) => ({
@@ -32,8 +31,8 @@ class Option extends React.Component<OptionProps, OptionState> {
             <div>
                 {
                     this.state.isEdit ?
-                        <OptionEdit option={this.state.option} handleStateChange={this.handleStateChange} /> :
-                        <OptionView option={this.state.option} handleStateChange={this.handleStateChange} syncServices={this.props.syncServices} serviceId={this.props.serviceId} />
+                        <OptionEdit option={this.props.option} handleStateChange={this.handleStateChange} /> :
+                        <OptionView option={this.props.option} handleStateChange={this.handleStateChange} syncServices={this.props.syncServices} serviceId={this.props.serviceId} />
                 }
             </div>
         );
@@ -62,9 +61,8 @@ class OptionView extends React.Component<OptionViewProps, OptionViewState> {
         console.log(this.props.serviceId);
 
         API.graphql({
-            query: custom_queries.deleteOption, variables: {
-                id: this.props.option.id,
-                serviceId: this.props.serviceId
+            query: mutations.deleteOption, variables: {
+                input: {id: this.props.option.id}
             }
         });
 

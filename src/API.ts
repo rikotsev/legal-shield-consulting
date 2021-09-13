@@ -143,7 +143,6 @@ export type UpdateOptionInput = {
 
 export type DeleteOptionInput = {
   id: string,
-  serviceId: string,
 };
 
 export type CreateOrderOptionInput = {

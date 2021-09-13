@@ -40,7 +40,7 @@ mutation createNewOption($description: String!, $id: ID!, $title: String!, $serv
     `;
 
 export const deleteOption = /* GraphQL */ `
-mutation deleteOption($id: ID!, $serviceId: ID!) {
+mutation deleteOption($id: ID!) {
   deleteOption(input: {id: $id, serviceId: $serviceId}) {
     id
   }

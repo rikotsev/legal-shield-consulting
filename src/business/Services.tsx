@@ -56,6 +56,9 @@ class Services extends React.Component<ServicesProps, ServicesState> {
     }
     async componentDidMount() {
         let services = await this.getAllServices();
+
+        console.log(services);
+
         this.setState(() => ({
             services: services
         }));
